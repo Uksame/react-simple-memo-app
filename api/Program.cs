@@ -50,3 +50,5 @@ app.UseHttpsRedirection();
 
 app.Run();
 
+/*     "DefaultConnection": "Server=.;Database=memo-ssp-project;Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;"
+ */
