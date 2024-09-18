@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Uksame\\source\\repos\\react-projects\\react-simple-memo-app\\api\\api.csproj": {}
+    "C:\\Users\\Uksame\\source\\repos\\react-projects\\react-simple-memo-app\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Uksame\\source\\repos\\react-projects\\react-simple-memo-app\\api\\api.csproj": {
+    "C:\\Users\\Uksame\\source\\repos\\react-projects\\react-simple-memo-app\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Uksame\\source\\repos\\react-projects\\react-simple-memo-app\\api\\api.csproj",
-        "projectName": "api",
-        "projectPath": "C:\\Users\\Uksame\\source\\repos\\react-projects\\react-simple-memo-app\\api\\api.csproj",
+        "projectUniqueName": "C:\\Users\\Uksame\\source\\repos\\react-projects\\react-simple-memo-app\\API\\API.csproj",
+        "projectName": "API",
+        "projectPath": "C:\\Users\\Uksame\\source\\repos\\react-projects\\react-simple-memo-app\\API\\API.csproj",
         "packagesPath": "C:\\Users\\Uksame\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Uksame\\source\\repos\\react-projects\\react-simple-memo-app\\api\\obj\\",
+        "outputPath": "C:\\Users\\Uksame\\source\\repos\\react-projects\\react-simple-memo-app\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Uksame\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -46,6 +46,14 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Cors": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[8.0.8, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[8.0.8, )"

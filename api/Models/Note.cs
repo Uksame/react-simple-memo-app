@@ -18,10 +18,13 @@ namespace api.Models
         [Required, MaxLength(100)]
         public string Title { get; set; } = null!;
 
-        public DateTime DateTime { get; } = DateTime.Now;
-        
+        public DateTime DateTime { get; set; } = DateTime.Now;
+
+        public int? CategoryId { get; set; }
+
         [MaxLength(50)]
-        public string? Group { get; set; }
+        // Navigation property
+        public Category? Category { get; set; } 
 
 
     }
