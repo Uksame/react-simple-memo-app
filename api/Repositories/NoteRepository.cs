@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using api.Data;
 using api.Dtos;
 using api.Interfaces;
+using api.Mappers;
 using api.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,56 +19,67 @@ namespace api.Repositories
         {
             _context = context;
         }
-        public async Task<List<Note>> GetAllAsync()
+        public async Task<List<NoteDto>> GetAllAsync()
         {
-            return await _context.Notes.ToListAsync();
+            var Notes = await _context.Notes.Include(c => c.Category).Select(n => n.ToNoteDto()).ToListAsync();
+
+            return Notes;
         }
-        public async Task<Note?> CreateAsync(Note note)
+
+        public async Task<NoteDto?> GetById(int id)
+        {
+
+            var note = await _context.Notes.Include(c => c.Category).FirstOrDefaultAsync(x => x.Id == id);
+            return note?.ToNoteDto();
+
+        }
+        
+        public async Task<NoteDto?> CreateAsync(Note note)
         {
             await _context.Notes.AddAsync(note);
             await _context.SaveChangesAsync();
-            return note;
+            return note.ToNoteDto();
 
         }
-        public async Task<Note?> DeleteAsync(int id)
+        public async Task<NoteDto?> DeleteAsync(int id)
         {
             var note = await _context.Notes.FirstOrDefaultAsync(x => x.Id == id);
+
             if (note == null)
                 return null;
 
             _context.Notes.Remove(note);
             await _context.SaveChangesAsync();
 
-            return note;
+            return note.ToNoteDto();
         }
-        public async Task<Note?> GetById(int id)
-        {
 
-            return await _context.Notes.FirstOrDefaultAsync(x => x.Id == id) ?? null;
-
-        }
-        public async Task<Note?> UpdateAsync(int id, NoteDto UpdatedComment)
+        public async Task<NoteDto?> UpdateAsync(int id, UpdateNoteDto UpdatedNote)
         {
             var note = await _context.Notes.FirstOrDefaultAsync(x => x.Id == id);
 
             if (note == null)
                 return null;
 
-            note.Content = UpdatedComment.Content;
-            note.Title = UpdatedComment.Title;
-            note.Group = UpdatedComment.Group;
+            note.Title = UpdatedNote.Title;
+            note.Content = UpdatedNote.Content;
+            note.CategoryId = UpdatedNote.CategoryId;
+            note.DateTime = DateTime.Now;
+
             //Check back later if the updated time will be an issue!
             /*    note.DateTime = DateTime.Now; */
 
             await _context.SaveChangesAsync();
-            return note;
+            return note.ToNoteDto();
 
         }
         //Not implemented yet !
-        public Task<Note?> GetBySymbolAsync(string symbol)
+        /* 
+        public Task<NoteDto?> GetBySymbolAsync(string symbol)
         {
             throw new NotImplementedException();
         }
+         */
 
     }
 }

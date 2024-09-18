@@ -45,8 +45,22 @@ namespace api.Controllers
             return note != null ? Ok(note) : NotFound();
         }
 
+        [HttpPost]
+
+        public async Task<IActionResult> Add([FromBody] NewNoteDto note)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var newNote = note.ToNoteFromCreate();
+
+            await _noteRepository.CreateAsync(newNote);
+
+            return newNote != null ? Ok(newNote) : StatusCode(500, "An error has occurred while adding this note ");
+        }
+
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update([FromRoute] int id, NoteDto note)
+        public async Task<IActionResult> Update([FromRoute] int id, UpdateNoteDto note)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -55,9 +69,10 @@ namespace api.Controllers
 
             return UpdatedNote != null ? Ok(UpdatedNote) : NotFound();
 
-
-
         }
+
+
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
@@ -66,20 +81,7 @@ namespace api.Controllers
             return DeletedNote != null ? Ok(DeletedNote) : NotFound();
         }
 
-        [HttpPost]
 
-
-        public async Task<IActionResult> Add([FromBody] NoteDto note)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            var newNote = note.ToNoteFromCreate(); // Use the extension method
-
-            newNote = await _noteRepository.CreateAsync(newNote);
-
-            return newNote != null ? Ok(newNote) : StatusCode(500, "An error has occurred while adding this note ");
-        }
 
     }
 

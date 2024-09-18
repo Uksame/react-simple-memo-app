@@ -1,3 +1,17 @@
+import { useEffect, useState } from "react";
+import {
+  getAllNotes,
+  getNoteById,
+  deleteNote,
+  updateNote,
+  addNote,
+} from "../Data/Data.js";
+
+/* const CurrentNotes = () => {
+  const [notes, setNotes] = useState([]);
+}; */
+
+//API Calls
 export const ACTIONS = {
   ADD_NOTE: "add-note",
   DELETE_NOTE: "delete-note",
@@ -8,8 +22,13 @@ export const ACTIONS = {
 // Reducer function
 export function reducer(notes, action) {
   switch (action.type) {
+    case ACTIONS.LIST_NOTES:
+      return [...action.payload]; //Add the fetched notes to the state
+
     case ACTIONS.ADD_NOTE:
-      return [...notes, newNote(action.payload)];
+      const newState = [...notes, newNote(action.payload)];
+      return newState;
+
     case ACTIONS.DELETE_NOTE:
       return notes.filter((note) => note.id !== action.payload.id);
     case ACTIONS.EDIT_NOTE:

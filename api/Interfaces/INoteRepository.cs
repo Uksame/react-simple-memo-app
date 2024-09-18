@@ -9,11 +9,11 @@ namespace api.Interfaces
 {
     public interface INoteRepository
     {
-        Task<List<Note>> GetAllAsync();
-        Task<Note?> CreateAsync(Note note);
-        Task<Note?> UpdateAsync(int id, NoteDto UpdatedComment);
-        Task<Note?> DeleteAsync(int id);
-        Task<Note?> GetById(int id);
-        Task<Note?> GetBySymbolAsync(string symbol);
+        Task<List<NoteDto>> GetAllAsync();
+        Task<NoteDto?> GetById(int id);
+        Task<NoteDto?> CreateAsync(Note note);
+        Task<NoteDto?> UpdateAsync(int id, UpdateNoteDto UpdatedComment);
+        Task<NoteDto?> DeleteAsync(int id);
+        // Task<NoteDto?> GetBySymbolAsync(string symbol);
     }
 }

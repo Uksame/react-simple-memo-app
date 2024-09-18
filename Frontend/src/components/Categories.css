@@ -1,0 +1,14 @@
+.CatList{
+    min-width: 10vh;
+    border: .1vh solid red;
+}
+
+.Category{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
+
+.Category * {
+    margin: 0.5rem;
+}
