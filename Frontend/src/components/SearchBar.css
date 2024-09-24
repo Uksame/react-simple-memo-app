@@ -1,9 +1,17 @@
+/* SearchBar styles */
 .SearchBar {
-  width: 100%;
-
+  grid-column: 1 / span 2;
+  grid-row: 1;
+  margin-bottom: 20px;
 }
 
-.SearchBar input{
-    width: 100%;
-    height: 100%;
+.SearchBar input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  border: 0.2vh solid var(--accent-color);
+  border-radius: 10px;
+  background-color: var(--secondary-color);
+  color: var(--font-color);
 }

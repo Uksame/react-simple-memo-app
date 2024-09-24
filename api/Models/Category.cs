@@ -28,7 +28,7 @@ namespace api.Models
         public ICollection<Note>? Notes { get; set; }
 
 
-        public bool IsAccessValid(string? passCode = null)
+        public bool IsAccessValid(string? passCode )
         {
             if (AccessType == AccessType.Public) return true;
             if (AccessType == AccessType.Private && PassCode == passCode) return true;

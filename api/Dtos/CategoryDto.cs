@@ -11,11 +11,13 @@ namespace api.Dtos
         public string Name { get; set; }
         public AccessType AccessType { get; set; }
 
+        public List<int>? NoteIds { get; set; }
+
         // public List<NoteDto>? Notes { get; set; }
 
     }
 
-    public class NewCategoryDto
+    public class NewUpdateCategoryDto
     {
 
         [Required]
@@ -30,18 +32,12 @@ namespace api.Dtos
 
     }
 
-    public class UpdateCategoryDto
+    public class CategoryNotesListDto
     {
 
-        [Required]
-        [StringLength(40)]
-        public string Name { get; set; }
+        public int Id { get; set; }
 
-        [Required]
-        [Range(0, 1, ErrorMessage = "AccessType must be either 0 (Public) or 1 (Private).")]
-        public AccessType AccessType { get; set; } = AccessType.Public;
-
-        public string? PassCode { get; set; } = string.Empty;
+        public List<NoteDto>? Notes { get; set; }
 
     }
 

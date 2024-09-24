@@ -7,11 +7,14 @@ namespace api.Interfaces
     {
         Task<List<CategoryDto>> GetAllAsync();
         Task<CategoryDto?> GetByIdAsync(int id);
+
+        Task<CategoryNotesListDto?> GetCategoryNotesByIdAsync(int id, string PassCode = "");
+
         Task<CategoryDto?> CreateAsync(Category category);
-        Task<CategoryDto?> UpdateAsync(int id, UpdateCategoryDto categoryDto);
+        Task<CategoryDto?> UpdateAsync(int id, NewUpdateCategoryDto categoryDto);
         Task<CategoryDto?> DeleteAsync(int id);
-        
-       /*  Task<Category?> GetBySymbolAsync(string symbol); */
+
+        /*  Task<Category?> GetBySymbolAsync(string symbol); */
 
     }
 }

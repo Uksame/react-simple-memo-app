@@ -1,4 +1,4 @@
-import "./SearchBar.css";
+import './SearchBar.css'
 export default function SearchBar({ search, setSearch }) {
   return (
     <form

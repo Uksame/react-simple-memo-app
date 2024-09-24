@@ -14,17 +14,19 @@ namespace api.Mappers
                 Id = category.Id,
                 Name = category.Name,
                 AccessType = category.AccessType,
+                NoteIds = category.Notes?.Select(x => x.Id).ToList(),
                 // Notes = category.Notes?.Select(c => c.ToNoteDto()).ToList() ?? []
             };
         }
 
-        public static Category ToCategoryFromCreate(this NewCategoryDto categoryDto)
+        public static Category ToCategoryFromCreate(this NewUpdateCategoryDto categoryDto)
         {
             return new Category
             {
                 Name = categoryDto.Name,
                 AccessType = categoryDto.AccessType,
                 PassCode = categoryDto.PassCode,
+
             };
         }
 
@@ -35,6 +37,15 @@ namespace api.Mappers
                 Id = categoryDto.Id,
                 Name = categoryDto.Name,
                 AccessType = categoryDto.AccessType,
+            };
+        }
+
+        public static CategoryNotesListDto ToCategoryNotesListDto(this Category category)
+        {
+            return new CategoryNotesListDto
+            {
+                Id = category.Id,
+                Notes = category.Notes?.Select(n => n.ToNoteDto()).ToList(),
             };
         }
 

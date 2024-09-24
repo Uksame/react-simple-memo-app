@@ -21,7 +21,7 @@ namespace api.Repositories
         }
         public async Task<List<NoteDto>> GetAllAsync()
         {
-            var Notes = await _context.Notes.Include(c => c.Category).Select(n => n.ToNoteDto()).ToListAsync();
+            var Notes = await _context.Notes.Include(c => c.Category).Where(n => n.Category == null || n.Category.AccessType == AccessType.Public).Select(n => n.ToNoteDto()).ToListAsync();
 
             return Notes;
         }
@@ -33,7 +33,7 @@ namespace api.Repositories
             return note?.ToNoteDto();
 
         }
-        
+
         public async Task<NoteDto?> CreateAsync(Note note)
         {
             await _context.Notes.AddAsync(note);

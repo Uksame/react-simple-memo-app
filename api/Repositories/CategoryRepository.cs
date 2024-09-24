@@ -8,6 +8,7 @@ using api.Dtos;
 using api.Interfaces;
 using api.Mappers;
 using api.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
 namespace api.Repositories
@@ -33,7 +34,7 @@ namespace api.Repositories
 
         public async Task<CategoryDto?> GetByIdAsync(int id)
         {
-            var category = await _context.Categories.FirstOrDefaultAsync(c => c.Id == id);
+            var category = await _context.Categories.Include(n => n.Notes).FirstOrDefaultAsync(c => c.Id == id);
 
             return category?.ToCategoryDto();
 
@@ -47,7 +48,7 @@ namespace api.Repositories
         }
 
 
-        public async Task<CategoryDto?> UpdateAsync(int id, UpdateCategoryDto categoryDto)
+        public async Task<CategoryDto?> UpdateAsync(int id, NewUpdateCategoryDto categoryDto)
         {
             var oldCategory = await _context.Categories.FirstOrDefaultAsync(c => c.Id == id);
 
@@ -79,6 +80,23 @@ namespace api.Repositories
 
         }
 
+        public async Task<CategoryNotesListDto?> GetCategoryNotesByIdAsync(int id, string PassCode)
+        {
 
+            /*             var category = await _context.Categories.Include(n => n.Notes).FirstOrDefaultAsync(c => c.Id == id);
+             */
+            var category = await _context.Categories.Include(c => c.Notes).FirstOrDefaultAsync(c => c.Id == id);
+
+            if (category == null)
+                return null;
+
+            if (!category.IsAccessValid(PassCode))
+                return null;
+
+
+            return category.ToCategoryNotesListDto();
+
+
+        }
     }
 }
