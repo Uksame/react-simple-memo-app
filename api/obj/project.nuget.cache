@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "CDje+Xkf3XE=",
+  "dgSpecHash": "yCio29lh91g=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Uksame\\source\\repos\\react-projects\\react-simple-memo-app\\API\\API.csproj",
+  "projectFilePath": "C:\\Users\\Uksame\\source\\repos\\react-projects\\react-simple-memo-app\\api\\api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Uksame\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\Uksame\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

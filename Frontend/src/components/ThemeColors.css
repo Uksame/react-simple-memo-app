@@ -1,0 +1,60 @@
+/* ThemeColors styles */
+.ThemeColors,.ThemeColors:focus {
+  position: relative;
+  z-index: 100;
+  justify-self: center;
+  place-self: center;
+  width: 50%;
+  min-height: 50px;
+  max-height: 50px;
+  overflow: hidden;
+  transition: min-height 0.3s ease;
+  background-color: var(--secondary-color);
+  padding: 10px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  border: 0.3vh solid var(--accent-color);
+  border-bottom: none;
+}
+
+.ThemeColors:hover, .ThemeColors:active {
+  min-height:  220px;
+}
+
+.ThemeColors select {
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 5px;
+}
+
+.ThemeColors h3 {
+  text-align: center;
+}
+
+.ColorPicker {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 100%;
+}
+
+.ColorPicker div {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 10px;
+}
+
+
+input {
+  background-color: transparent;
+  width: 100%;
+}
+
+
+select {
+  width: 55%;
+  background-color: rgba(254, 254, 254, 0.7);
+  transition: all 0.3s linear;
+  border: none;
+}

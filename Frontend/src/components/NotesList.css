@@ -1,0 +1,12 @@
+/* NotesList styles */
+.ListNotes {
+  grid-column: 1 / span 2;
+  grid-row: 3;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1vh;
+  min-height: 0%;
+  max-height: 30%;
+}

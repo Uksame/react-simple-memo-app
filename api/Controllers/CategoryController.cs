@@ -37,6 +37,7 @@ namespace api.Controllers
 
 
         [HttpGet("{id}")]
+
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             if (!ModelState.IsValid)
@@ -44,11 +45,24 @@ namespace api.Controllers
 
             var category = await _categoryRepository.GetByIdAsync(id);
 
-            return category == null ? NotFound() : Ok(category);
+            return category != null ? Ok(category) : NotFound();
         }
 
+
+        [HttpPost("{id}")]
+        public async Task<IActionResult> GetWithNotesById([FromRoute] int id, [FromBody] PasswordDto passwordDto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var category = await _categoryRepository.GetCategoryNotesByIdAsync(id, passwordDto.PassCode);
+
+            return category != null ? Ok(category) : NotFound();
+        }
+
+
         [HttpPost]
-        public async Task<IActionResult> Add([FromBody] NewCategoryDto categoryDto)
+        public async Task<IActionResult> Add([FromBody] NewUpdateCategoryDto categoryDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -62,7 +76,7 @@ namespace api.Controllers
 
         [HttpPut("{id}")]
 
-        public async Task<IActionResult> Update([FromRoute] int id, UpdateCategoryDto categoryDto)
+        public async Task<IActionResult> Update([FromRoute] int id, NewUpdateCategoryDto categoryDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
