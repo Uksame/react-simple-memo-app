@@ -1,0 +1,12 @@
+# Node
+node_modules/
+npm-debug.log*
+
+# .NET
+api/bin/
+api/obj/
+.vs/
+
+# Editor
+.vscode/*
+!.vscode/settings.json

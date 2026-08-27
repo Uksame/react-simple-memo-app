@@ -1,158 +1,235 @@
-/* Category */
-
-.Category,
-.AddNewCat {
-  background-color: var(--primary-color);
-  color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
-  min-width: 250px;
-  min-height: 120px;
-  max-width: 80%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 15px;
-  padding: 20px;
-  border: 0.3vh solid var(--accent-color);
-  cursor: pointer;
-  margin: 5px;
-  transition: background-color 0.3s ease;
-}
-
-.Category:hover {
-  background-color: var(--hover-color);
-}
-
-.Category .buttons {
-  
-  display: flex;
-  border: 0.2vh solid var(--accent-color);
-  border-radius: 15px;
-  background-color: var(--secondary-color);
-  width: 100%;
-  justify-content: center;
-}
-.check,
-.delete {
-  font-weight: 500;
-  font-size: .8em;
-  width: 50%;
-  background-color: transparent;
-  border: 0.1vh solid var(--accent-color);
-  border-top: none;
-  border-bottom: none;
-  transition: all linear 0.2s;
-}
-
-.check:hover,
-.delete:hover,
-.Header button:hover,
-.Header select:hover {
-  background-color: var(--hover-color);
-  color: var(--primary-color);
-}
-
-/* Add Category */
-
-.Header {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-}
-
-.Header select {
-  width: 70%;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-}
-.Header button {
-  width: 30%;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  border-left: none;
-}
-
-.Header button,
-.Header select {
-  background-color: rgba(254, 254, 254, 0.7);
-  border: 0.2vh solid var(--accent-color);
-  height: 25px;
-  transition: all linear 0.2s;
-
-}
-
-.AddNewCat input, .Password {
-  background-color: var(--secondary-color);
-  border: 0.2vh solid var(--accent-color);
-  height: 25px;
-  margin: 5px 0;
-  border-radius: 5px;
-}
-
 /* Categories styles */
 .Categories {
   position: relative;
-  grid-column: 1 / span 2;
-  grid-row: 2;
-  display: grid;
-  grid-template-rows: 20% 5% 1fr;
-  align-items: center;
-    max-height: 50px;
+  display: flex;
+  flex-direction: column;
+  max-height: 46px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-soft);
+  background: var(--surface-strong);
+  overflow: hidden;
+  transition: max-height 0.35s var(--ease);
+  margin-bottom: 14px;
+}
 
-  background-color: var(--secondary-color);
-  border-radius: 10px;
-  border: 0.2vh solid var(--accent-color);
-  overflow: auto;
-  transition: max-height 0.3s ease;
-  margin-bottom: 20px;
+.Categories:hover,
+.Categories:focus-within {
+  max-height: 420px;
+  overflow-y: auto;
 }
 
 .Categories .headers {
-  grid-row: 1;
   position: sticky;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   top: 0;
-  background-color: var(--secondary-color);
-  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--surface-strong);
   z-index: 1;
+  flex-shrink: 0;
+}
+
+.Categories .headers h3 {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: rgba(31, 28, 44, 0.55);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .headers button {
   cursor: pointer;
-  min-width: 100%;
-  min-height: 2vh;
-  border: none;
-  background-color: rgba(254, 254, 254, 0.6);
-  margin-bottom: 5px;
-  transition: all linear 0.3s;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border-soft);
+  background: transparent;
+  color: var(--font-color);
+  transition: all 0.2s var(--ease);
 }
+
 .headers button:hover {
+  border-color: var(--primary-color);
   color: var(--primary-color);
-  background-color: var(--hover-color);
+}
+
+.headers button.active {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
 }
 
 .Categories .cat-container {
-  grid-row: 3;
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-.headers button:active {
-  background-color: var(--accent-color);
-}
-
-.Categories:hover {
-  max-height: 430px;
-}
-
-.CatList {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  padding: 4px 14px 14px;
+}
+
+/* Category chip */
+
+.Category,
+.AddNewCat {
+  background: white;
+  color: var(--font-color);
+  min-width: 150px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  border: 1px solid var(--border-soft);
+  cursor: default;
+  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease),
+    transform 0.2s var(--ease);
+}
+
+.Category:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
+}
+
+.Category.active {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(124, 111, 240, 0.16);
+}
+
+.Category .name {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.Category .name.Private {
+  color: var(--accent-cont-color);
+}
+
+.Category .buttons {
+  display: flex;
+  border-radius: 999px;
+  background: rgba(31, 28, 44, 0.04);
+  overflow: hidden;
+}
+
+.check,
+.delete {
+  font-weight: 600;
+  font-size: 0.78rem;
+  flex: 1;
+  padding: 6px 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s var(--ease);
+}
+
+.check {
+  color: var(--primary-color);
+}
+
+.delete {
+  color: rgba(31, 28, 44, 0.45);
+}
+
+.check:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.delete:hover {
+  background-color: #e5484d;
+  color: white;
+}
+
+/* Add Category */
+
+.AddNewCat {
+  min-width: 190px;
+  background: rgba(124, 111, 240, 0.05);
+  border-style: dashed;
+}
+
+.Header {
+  display: flex;
+  gap: 6px;
+}
+
+.Header select,
+.Header button {
+  height: 30px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-soft);
+  font-size: 0.8rem;
+  background: white;
+  transition: all 0.2s var(--ease);
+}
+
+.Header select {
+  flex: 1.4;
+  color: var(--font-color);
+}
+
+.Header button {
+  flex: 1;
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.Header button:hover {
+  filter: brightness(1.08);
+}
+
+.AddNewCat input,
+.AddNewCat .pass {
+  background-color: white;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  height: 30px;
+  padding: 0 10px;
+  font-size: 0.85rem;
+  color: var(--font-color);
+  font-family: inherit;
+}
+
+.AddNewCat input:focus,
+.Category .Password:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.Category .Password {
+  background-color: white;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  height: 30px;
+  padding: 0 10px;
+  font-size: 0.85rem;
+  font-family: inherit;
+}
+
+.error {
+  color: #e5484d;
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+.success {
+  color: #2f9e44;
+  font-size: 0.75rem;
+  margin: 0;
 }
