@@ -52,6 +52,21 @@ dotnet run
 
 It listens on `http://localhost:5000` by default, which is what the frontend's Axios calls target. Then start the frontend as above — it'll talk to the real API instead of falling back to local data.
 
+## Deploying to GitHub Pages
+
+Only the frontend deploys to Pages — there's no backend there, so it runs entirely on sample data and `localStorage`, per the fallback behavior above.
+
+A workflow at `.github/workflows/deploy-pages.yml` builds `Frontend/` and publishes it on every push to `master`. One-time setup: in the repo's **Settings → Pages**, set **Source** to **GitHub Actions**. After that, pushes to `master` that touch `Frontend/` deploy automatically; you can also trigger it manually from the Actions tab.
+
+Alternatively, deploy by hand from your machine:
+
+```bash
+cd Frontend
+npm run deploy
+```
+
+This builds and pushes `dist/` to a `gh-pages` branch (via the `gh-pages` package). If you use this method instead, set Pages' **Source** to **Deploy from a branch** → `gh-pages`.
+
 ## Project layout
 
 - `Frontend/src/components/` — `NotesList`, `Note`, `NoteAdd`, `Categories`, `SearchBar`, `ThemeColors`
